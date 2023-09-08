@@ -2,14 +2,14 @@ const form = document.getElementById('form');
 const table = document.getElementById('result-table')
 const error_div = document.getElementById('error_div');
 
-// function showError(msg, delay){
-//     error_div.innerText = msg;
+function showError(msg, delay){
+    error_div.innerText = msg;
 
-//     setTimeout(function() {
-//         error_div.innerText = "";
+    setTimeout(function() {
+        error_div.innerText = "";
 
-//     }, delay);
-// }
+    }, delay);
+}
 
 let x_values = [];
 
@@ -54,7 +54,7 @@ form.addEventListener('submit', function(event ){
                 table.innerHTML += content;           
         })
     } else {
-        // showError("Недопустимые значения", 3000)
-        alert("bruh");
+        showError("Недопустимые значения", 3000)
+        // alert("bruh");
     }
 })

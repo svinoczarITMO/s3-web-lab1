@@ -41,7 +41,7 @@
         echo json_encode($data);
         http_response_code(201);
     } else {
-        echo json_encode(array('collision' => "некорректные данные", 'exectime' => NULL));
+        echo json_encode(array('collision' => "некорректные данные", 'execute time' => NULL));
         http_response_code(400);
     }
 

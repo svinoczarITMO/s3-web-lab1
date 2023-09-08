@@ -1,8 +1,13 @@
 header{
-    border-width: 10px;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    border-width: 20px;
+    box-shadow: 2px 2px 4px rgba(1, 1, 1, 0.1);
     text-align: center;
-}
+    color: aliceblue;
+    text-shadow: 3px 3px 3px rgba(0, 0, 0, 1);
+    font: 1.2em "serif";
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
 
 /* селектор идентификаторов */
 #form {
@@ -11,20 +16,21 @@ header{
   }
 
   #error_div {
-    color: rgba(239, 254, 255, 0.819);
+    text-shadow: 0.5px 0.5px 0.5px rgba(0, 0, 0, 0.5);
+    color: rgba(238, 3, 3, 0.819);
   } */
 
   /* селектор псевдоэлемента */
-  /* #slider-value::before {
+  #slider-value::before {
     content: "x: ";
     font-weight: bold;
-  } */
+  }
 
   /* селектор псевдокласса */
-  /* button.submitBtn:hover {
+  button.submitBtn:hover {
     background-color: yellow;
     color: black;
-  } */
+  }
 
   /* наследование */
   body {
