@@ -17,7 +17,7 @@ document.querySelectorAll(".x_val").forEach(function(button){
     button.addEventListener("click",handler);
 })
 
-function handler(event ){
+function handler(event){
     x_values.push(event.target.value);
 }
 
