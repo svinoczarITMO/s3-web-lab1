@@ -1,29 +1,30 @@
 <?php
-    require "utils.php";
+session_start();
 
-    $initial_time = microtime(true);
-    $x = floatval($_POST["x_field"]);
-    $y = floatval($_POST["y_field"]);
-    $R = floatval($_POST["R_value"]);
+require "utils.php";
+
+$initial_time = microtime(true);
+$_SESSION['x'] = floatval($_POST['x_field']);
+$_SESSION['y'] = floatval($_POST['y_field']);
+$_SESSION['R'] = floatval($_POST['R_value']);
+
+if (validate($_SESSION['x'], $_SESSION['y'], $_SESSION['R'])) {
+    $collision = checkDot($_SESSION['x'], $_SESSION['y'], $_SESSION['R']);
     $executionTime = $initial_time - $_SERVER['REQUEST_TIME'];
 
-    if(validate($x, $y, $R)){
-        $Collision = checkDot($x, $y, $R);
+    $result = array(
+        'x' => $_SESSION['x'],
+        'y' => $_SESSION['y'],
+        'R' => $_SESSION['R'],
+        'collision' => $collision ? "true" : "false",
+        'exectime' => $executionTime
+    );
 
-        if($Collision){
-            $res = "true";
-        } else {
-            $res = "false";
-        }
+    $_SESSION['results'][] = $result;
 
-        $data = array('collision' => $res, 'exectime' => $executionTime);
-
-        echo json_encode($data);
-        http_response_code(201);
-    } else {
-        echo json_encode(array('collision' => "некорректные данные", 'execute time' => NULL));
-        http_response_code(400);
-    }
-
-    // test1(1,1,3)
-?>
+    echo json_encode($result);
+    http_response_code(201);
+} else {
+    echo json_encode(array('collision' => "Некорректные данные", 'execute time' => NULL));
+    http_response_code(400);
+}
