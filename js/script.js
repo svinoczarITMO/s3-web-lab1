@@ -2,7 +2,7 @@ const table = document.getElementById('result-table');
 const form = document.getElementById('form');
 const error_div = document.getElementById('error_div')
 
-const xhr = new XMLHttpRequest();
+var xhr = new XMLHttpRequest();
 xhr.open('GET', 'php/get_results.php', true);
 xhr.setRequestHeader('Content-type', 'application/json');
 xhr.onload = function () {
@@ -26,6 +26,22 @@ xhr.onload = function () {
 };
 xhr.send();
 
+document.getElementById("clear-table").addEventListener("click", function () {
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "php/clear_results.php", true);
+    xhr.send();
+    table.innerHTML = `<th width="16.6%">X</th>
+                       <th width="16.6%">Y</th>
+                       <th width="16.6%">R</th>
+                       <th width="16.6%">res</th>
+                       <th width="16.6%">execution time</th>
+                       <th width="16.6%">time</th>`
+    setColorClick("clear-table", "green");
+    setTimeout(function() {
+        removeColorClick("clear-table", "green");
+    }, 250);
+});
+
 
 let currentButtonId;
 let x_values = [];
@@ -33,7 +49,7 @@ let x_values = [];
 document.querySelectorAll(".x_val").forEach(function (button) {
     button.addEventListener("click", function (event) {
         x_values.push(event.target.value);
-        changeColor(button.id);
+        changeColorSelect(button.id);
     });
 });
 
@@ -74,13 +90,23 @@ form.addEventListener('submit', function (event) {
     }
 })
 
-function changeColor(buttonId) {
+function changeColorSelect(buttonId) {
     if (currentButtonId) {
-      var previousButton = document.getElementById(currentButtonId);
-      previousButton.classList.remove('green');
+        var previousButton = document.getElementById(currentButtonId);
+        previousButton.classList.remove('green');
     }
-  
+
     var button = document.getElementById(buttonId);
     button.classList.add('green');
     currentButtonId = buttonId;
-  }
+}
+
+function setColorClick(elementId, className) {
+    var element = document.getElementById(elementId);
+    element.classList.add(className);
+}
+
+function removeColorClick(elementId, className) {
+    var element = document.getElementById(elementId);
+    element.classList.remove(className);
+}
