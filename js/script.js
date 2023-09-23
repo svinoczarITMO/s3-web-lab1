@@ -110,3 +110,12 @@ function removeColorClick(elementId, className) {
     var element = document.getElementById(elementId);
     element.classList.remove(className);
 }
+
+function showError(msg, delay){
+    error_div.innerText = msg;
+
+    setTimeout(function() {
+        error_div.innerText = "";
+
+    }, delay);
+}
