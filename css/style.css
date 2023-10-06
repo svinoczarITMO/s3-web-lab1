@@ -1,9 +1,7 @@
 header {
-    /* "рамка" и её стили */
     border-width: 200px;
     box-shadow: 2.5px 5px 5px rgba(1, 1, 1, 0.25);
 
-    /* стили текста */
     font: sans-serif;
     font-size: 35px;
     text-decoration: wavy;

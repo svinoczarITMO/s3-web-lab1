@@ -1,7 +1,7 @@
 <?php
 
     function validate ($x, $y, $R) {
-        if (-4 <= $x && $x <= 4 && -3 <= $y && $y <= 5 && 1 <= $R && $R <= 5) {
+        if (is_numeric($x) && is_numeric($y) && is_numeric($R) && (-4 <= $x && $x <= 4 && -3 <= $y && $y <= 5 && 1 <= $R && $R <= 5)) {
             return true;
         }
         return false;

@@ -10,18 +10,26 @@ xhr.onload = function () {
         const savedResults = JSON.parse(xhr.responseText);
         // Отобразите сохраненные результаты в таблице
         savedResults.forEach(result => {
-            const currentTime = new Date().toLocaleString('ru-RU', { timeZone: 'Europe/Moscow' });
+            // const currentTime = new Date().toLocaleString('ru-RU', { timeZone: 'Europe/Moscow' });
             const content = `<tr>
                                 <td>${result.x}</td>
                                 <td>${result.y}</td>
                                 <td>${result.R}</td>
                                 <td>${result.collision}</td>
                                 <td>${result.exectime}</td>
-                                <td>${currentTime}</td>
+                                <td>${result.time}</td>
                             </tr>`
 
             table.innerHTML += content;
         });
+    } else {
+        showError("Ooops! Something went wrong.", 2000)
+        table.innerHTML = `<th width="16.6%">X</th>
+                       <th width="16.6%">Y</th>
+                       <th width="16.6%">R</th>
+                       <th width="16.6%">res</th>
+                       <th width="16.6%">execution time</th>
+                       <th width="16.6%">time</th>`
     }
 };
 xhr.send();
@@ -73,20 +81,20 @@ form.addEventListener('submit', function (event) {
         })
             .then(response => response.json())
             .then(result => {
-                const currentTime = new Date().toLocaleString('ru-RU', { timeZone: 'Europe/Moscow' });
+                // const currentTime = new Date().toLocaleString();
                 const content = `<tr>
                                 <td>${result.x}</td>
                                 <td>${result.y}</td>
                                 <td>${result.R}</td>
                                 <td>${result.collision}</td>
-                                <td>${result.exectime}</td>
-                                <td>${currentTime}</td>
+                                <td>${result.exectime}s</td>
+                                <td>${result.time}</td>
                             </tr>`
 
                 table.innerHTML += content;
             })
     } else {
-        showError("Недопустимые значения", 3000)
+        showError("Проверьте корректность введенных значений!\nx ∈ [-4; 4]\ny ∈ [-3; 5]\nR ∈ [1; 5]", 5000)
     }
 })
 
